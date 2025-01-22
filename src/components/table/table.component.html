@@ -1,0 +1,53 @@
+<div class="table-container">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th><i class="fas fa-id-badge"></i> ID</th>
+        <th>
+          <i class="fas fa-user"></i> First Name
+          <button (click)="sortData('first_name')" class="sort-button">
+            ⇅
+          </button>
+        </th>
+        <th>
+          <i class="fas fa-user"></i> Last Name
+          <button (click)="sortData('last_name')" class="sort-button">⇅</button>
+        </th>
+        <th>
+          <i class="fas fa-envelope"></i> Email
+          <button (click)="sortData('email')" class="sort-button">⇅</button>
+        </th>
+        <th><i class="fas fa-image"></i> Avatar</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <img [src]="user.avatar" alt="Avatar" class="avatar" />
+        </td>
+        <td>
+          <button (click)="editUser(user)" class="action-button edit-button">
+            Edit
+          </button>
+          <button
+            (click)="deleteUser(user)"
+            class="action-button delete-button"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">
+      Previous
+    </button>
+    <button (click)="nextPage()">Next</button>
+  </div>
+</div>

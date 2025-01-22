@@ -1,0 +1,157 @@
+/* General Container */
+.table-container {
+  padding: 36px;
+  background: linear-gradient(to bottom, #4663ff, #fafbf8);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 1400px;
+  margin-left: 220px;
+
+  width: 100%;
+
+  font-family: Arial, sans-serif;
+
+  min-height: 70vh; /* Ensure at least full viewport height */
+  display: flex; /* Enable flexbox for centering */
+  flex-direction: column; /* Align items vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+}
+
+/* Table Styles */
+.custom-table {
+  min-height: 60vh;
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.custom-table thead {
+  background-color: #f3f4f6;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.custom-table th {
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.custom-table tr:nth-child(odd) {
+  background-color: #f9fafb;
+}
+
+.custom-table tr:hover {
+  background-color: #edf2ff;
+}
+
+.custom-table td {
+  font-size: 20px;
+  color: #374151;
+}
+
+.avatar {
+  width: 30%;
+  height: auto;
+  border-radius: 50%;
+  transition: transform 0.3s ease; /* Smooth zoom effect */
+}
+
+.avatar:hover {
+  transform: scale(2); /* Zoom in slightly on hover */
+}
+
+/* Action Buttons */
+.action-button {
+  padding: 10px 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.edit-button {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #2563eb;
+}
+
+.delete-button {
+  background-color: #ef4444;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #dc2626;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  gap: 8px;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination button:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #1e40af;
+}
+/* Table Header Sorting */
+
+/* Input Filter */
+th input {
+  padding: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
+
+th button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px; /* Adjust font size of the sort icon */
+  color: #374151; /* Set text color for the button */
+  margin-left: 8px; /* Space between column name and button */
+}
+
+th button:hover {
+  color: #2563eb; /* Change color on hover */
+}
+
+th button i {
+  font-size: 16px; /* Set icon size */
+  color: #6b7280;
+}
+
+th button:hover i {
+  color: #2563eb; /* Icon color on hover */
+}
