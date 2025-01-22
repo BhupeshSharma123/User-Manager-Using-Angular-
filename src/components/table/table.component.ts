@@ -3,6 +3,7 @@ import { ApiServicesService } from '../../services/api-services.service';
 import { CommonModule } from '@angular/common';
 import { EditUserDialogComponent } from '../models/edit-user-dialog/edit-user-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../models/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-table',
@@ -17,6 +18,24 @@ export class TableComponent implements OnInit {
   isAscending: boolean = true; // Sort direction
 
   sortedData!: any[];
+  // for Deleting columns
+  openConfirmationDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: { message: 'Are you sure you want to proceed?' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('User confirmed the action');
+        this.deleteUser;
+        // Perform the action (e.g., save, delete, etc.)
+      } else {
+        console.log('User canceled the action');
+      }
+    });
+  }
+  // for Edit user dialog
   editUser(user: any) {
     this.apiService.updateData(user.id, user);
     this.fetchData();
