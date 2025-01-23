@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { EditUserDialogComponent } from '../models/edit-user-dialog/edit-user-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../models/confirmation-dialog/confirmation-dialog.component';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-table',
   imports: [CommonModule],
@@ -16,10 +16,11 @@ import { ConfirmationDialogComponent } from '../models/confirmation-dialog/confi
 export class TableComponent implements OnInit {
   currentSort: string = ''; // Currently sorted column
   isAscending: boolean = true; // Sort direction
-
+  users: any[] = [];
+  currentPage: number = 1;
   sortedData!: any[];
   // for Deleting columns
-  openConfirmationDialog(): void {
+  openConfirmationDialog(user: any): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: { message: 'Are you sure you want to proceed?' },
@@ -28,7 +29,8 @@ export class TableComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('User confirmed the action');
-        this.deleteUser;
+        this.deleteUser(user);
+        this.showToast('User Deleted');
         // Perform the action (e.g., save, delete, etc.)
       } else {
         console.log('User canceled the action');
@@ -67,10 +69,9 @@ export class TableComponent implements OnInit {
 
     this.users = this.users.filter((u) => u.id !== user.id);
   }
-  users: any[] = [];
-  currentPage: number = 1;
 
   constructor(
+    private snackBar: MatSnackBar,
     public apiService: ApiServicesService,
     private dialog: MatDialog
   ) {}
@@ -103,7 +104,17 @@ export class TableComponent implements OnInit {
       });
     }
   }
-
+  showToast(
+    message: string,
+    action: string = 'Close',
+    duration: number = 3000
+  ): void {
+    this.snackBar.open(message, action, {
+      duration: duration, // Duration in milliseconds
+      horizontalPosition: 'right', // Position horizontally
+      verticalPosition: 'top', // Position vertically
+    });
+  }
   // Filtering Data
 
   nextPage() {
