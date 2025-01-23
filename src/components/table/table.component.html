@@ -1,28 +1,89 @@
-<div class="table-container" style="margin-top: 30px">
+<div class="table-container" style="margin: 30px auto; max-width: 1200px">
+  <!-- Global Filter -->
+  <div class="filter-container">
+    <input
+      type="text"
+      placeholder="Search All Columns..."
+      (input)="applyGlobalFilter($any($event.target).value)"
+      class="filter-input"
+    />
+  </div>
+
   <table class="custom-table">
     <thead>
       <tr>
-        <th><i class="fas fa-id-badge"></i> ID</th>
+        <!-- ID Column -->
         <th>
-          <i class="fas fa-user"></i> First Name
-          <button (click)="sortData('first_name')" class="sort-button">
-            ⇅
-          </button>
+          <div class="header-container"><i class="fas fa-id-badge"></i> ID</div>
         </th>
+
+        <!-- First Name Column -->
         <th>
-          <i class="fas fa-user"></i> Last Name
-          <button (click)="sortData('last_name')" class="sort-button">⇅</button>
+          <div class="header-container">
+            <i class="fas fa-user"></i> First Name
+            <input
+              type="text"
+              placeholder="Filter First Name"
+              (input)="
+                applyColumnFilter('first_name', $any($event.target).value)
+              "
+              class="column-filter-input"
+            />
+            <button (click)="sortData('first_name')" class="sort-button">
+              ⇅
+            </button>
+          </div>
         </th>
+
+        <!-- Last Name Column -->
         <th>
-          <i class="fas fa-envelope"></i> Email
-          <button (click)="sortData('email')" class="sort-button">⇅</button>
+          <div class="header-container">
+            <i class="fas fa-user"></i> Last Name
+            <input
+              type="text"
+              placeholder="Filter Last Name"
+              (input)="
+                applyColumnFilter('last_name', $any($event.target).value)
+              "
+              class="column-filter-input"
+            />
+            <button (click)="sortData('last_name')" class="sort-button">
+              ⇅
+            </button>
+          </div>
         </th>
-        <th><i class="fas fa-image"></i> Avatar</th>
-        <th>Actions</th>
+
+        <!-- Email Column -->
+        <th>
+          <div class="header-container">
+            <i class="fas fa-envelope"></i> Email
+            <input
+              type="text"
+              placeholder="Filter Email"
+              (input)="applyColumnFilter('email', $any($event.target).value)"
+              class="column-filter-input"
+            />
+            <button (click)="sortData('email')" class="sort-button">⇅</button>
+          </div>
+        </th>
+
+        <!-- Avatar Column -->
+        <th>
+          <div class="header-container" style="margin-bottom: 62px">
+            <i class="fas fa-image"></i> Avatar
+          </div>
+        </th>
+
+        <!-- Actions Column -->
+        <th>
+          <div class="header-container" style="margin-bottom: 62px">
+            Actions
+          </div>
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of filteredUsers">
         <td>{{ user.id }}</td>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
@@ -30,7 +91,7 @@
         <td>
           <img [src]="user.avatar" alt="Avatar" class="avatar" />
         </td>
-        <td>
+        <td class="actions">
           <button (click)="editUser(user)" class="action-button edit-button">
             Edit
           </button>
@@ -44,6 +105,7 @@
       </tr>
     </tbody>
   </table>
+
   <div class="pagination">
     <button (click)="previousPage()" [disabled]="currentPage === 1">
       Previous

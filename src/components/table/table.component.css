@@ -1,33 +1,36 @@
 /* General Container */
 .table-container {
-  padding: 36px;
+  padding: 37px;
   background: linear-gradient(to bottom, #4663ff, #fafbf8);
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 1400px;
-  margin-left: 220px;
-
+  margin: 30px auto; /* Center the table container */
   width: 100%;
-
   font-family: Arial, sans-serif;
-
   min-height: 70vh; /* Ensure at least full viewport height */
   display: flex; /* Enable flexbox for centering */
   flex-direction: column; /* Align items vertically */
   align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
+  justify-content: flex-start; /* Center vertically with some space at the top */
 }
 
 /* Table Styles */
 .custom-table {
   min-height: 60vh;
+  padding: 20px;
   width: 100%;
   border-collapse: collapse;
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
 }
-
+.actions {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
 .custom-table thead {
   background-color: #f3f4f6;
 }
@@ -57,6 +60,7 @@
   color: #374151;
 }
 
+/* Avatar Styles */
 .avatar {
   width: 30%;
   height: auto;
@@ -123,9 +127,8 @@
 .pagination button:hover:not(:disabled) {
   background: #1e40af;
 }
-/* Table Header Sorting */
 
-/* Input Filter */
+/* Table Header Sorting */
 th input {
   padding: 6px;
   border: 1px solid #d1d5db;
@@ -154,4 +157,32 @@ th button i {
 
 th button:hover i {
   color: #2563eb; /* Icon color on hover */
+}
+
+/* Global Filter */
+.filter-input {
+  margin-bottom: 16px;
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  outline: none;
+  max-width: 400px; /* Prevents it from being too wide */
+}
+
+.filter-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.5);
+}
+
+/* Column Filter */
+.column-filter-input {
+  width: 100%;
+  padding: 4px 8px;
+  margin-top: 8px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
