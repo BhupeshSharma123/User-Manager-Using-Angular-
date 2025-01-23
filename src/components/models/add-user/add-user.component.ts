@@ -1,20 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-edit-user-dialog',
-  templateUrl: './edit-user-dialog.component.html',
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.css'],
   imports: [MatFormFieldModule, MatInputModule, CommonModule, FormsModule],
-  styleUrls: ['./edit-user-dialog.component.css'],
 })
-export class EditUserDialogComponent {
-  userText: string = '';
+export class AddUserComponent implements OnInit {
   constructor(
-    public dialogRef: MatDialogRef<EditUserDialogComponent>,
+    public dialogRef: MatDialogRef<AddUserComponent>,
     // Inject user data to populate the form fields in the dialog
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -26,4 +25,5 @@ export class EditUserDialogComponent {
   cancel(): void {
     this.dialogRef.close(); // Close without saving
   }
+  ngOnInit() {}
 }

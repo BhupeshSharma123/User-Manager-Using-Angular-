@@ -9,6 +9,7 @@ export class ApiServicesService {
 
   getData(page: number = 1, perPage: number = 3) {
     const url = `https://reqres.in/api/users?page=${page}&per_page=${perPage}`;
+    console.log('page number ', page);
     return this.http.get(url);
   }
   deleteData(id: string) {

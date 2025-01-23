@@ -7,6 +7,8 @@ import { ConfirmationDialogComponent } from '../models/confirmation-dialog/confi
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 
+import { AddUserComponent } from '../models/add-user/add-user.component';
+
 @Component({
   selector: 'app-table',
   imports: [CommonModule, FormsModule],
@@ -26,6 +28,7 @@ export class TableComponent implements OnInit {
     last_name: '',
     email: '',
   };
+  pageSize: any;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -47,6 +50,8 @@ export class TableComponent implements OnInit {
 
   // Pagination
   nextPage() {
+    console.log(this.currentPage);
+
     this.currentPage++;
     this.fetchData();
   }
@@ -83,7 +88,26 @@ export class TableComponent implements OnInit {
       )
     );
   }
+  addUserToTable(newUser: any) {
+    const dialogRef = this.dialog.open(AddUserComponent, {
+      width: '400px',
+      data: { newUser }, // Pass a copy of the user data to the dialog
+    });
 
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.users.unshift(result); // Add newUser to the beginning of the array
+        this.filteredUsers = [...this.users]; // Update filteredUsers
+
+        // Ensure only the first 3 records are shown
+        this.filteredUsers = this.filteredUsers.slice(0, 3);
+
+        this.showToast('User Added successfully');
+      } else {
+        console.log('Dialog was closed without adding a new user');
+      }
+    });
+  }
   applyGlobalFilter(searchText: string): void {
     const lowerCaseSearch = searchText.toLowerCase();
     this.filteredUsers = this.users.filter((user) =>
@@ -104,6 +128,8 @@ export class TableComponent implements OnInit {
       if (result) {
         // Update the user data
         const index = this.users.findIndex((u) => u.id === user.id);
+        console.log(index);
+
         if (index !== -1) {
           this.users[index] = result;
           this.filteredUsers = [...this.users]; // Update filteredUsers

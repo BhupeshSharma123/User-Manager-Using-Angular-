@@ -54,7 +54,11 @@
 .custom-table tr:hover {
   background-color: #edf2ff;
 }
-
+.data-column {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .custom-table td {
   font-size: 20px;
   color: #374151;
@@ -62,7 +66,7 @@
 
 /* Avatar Styles */
 .avatar {
-  width: 30%;
+  width: 40%;
   height: auto;
   border-radius: 50%;
   transition: transform 0.3s ease; /* Smooth zoom effect */
@@ -103,12 +107,23 @@
 /* Pagination */
 .pagination {
   display: flex;
-  justify-content: center;
-  align-items: center;
+
+  justify-content: space-evenly;
+  /* align-items: stretch; */
   margin-top: 16px;
   gap: 8px;
 }
-
+.page-count {
+  color: #374151;
+  margin-right: 8px;
+  margin-right: 8px;
+}
+.header-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start; /* Correct property for Flexbox */
+  align-items: center; /* Align items vertically */
+}
 .pagination button {
   padding: 10px 20px;
   background: #2563eb;

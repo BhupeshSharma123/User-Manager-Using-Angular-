@@ -1,4 +1,4 @@
-<div class="table-container" style="margin: 30px auto; max-width: 1200px">
+<div class="table-container">
   <!-- Global Filter -->
   <div class="filter-container">
     <input
@@ -9,18 +9,13 @@
     />
   </div>
 
-  <table class="custom-table">
-    <thead>
-      <tr>
-        <!-- ID Column -->
-        <th>
-          <div class="header-container"><i class="fas fa-id-badge"></i> ID</div>
-        </th>
-
-        <!-- First Name Column -->
-        <th>
-          <div class="header-container">
-            <i class="fas fa-user"></i> First Name
+  <div class="responsive-table">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th style="padding-bottom: 93px">ID</th>
+          <th>
+            First Name
             <input
               type="text"
               placeholder="Filter First Name"
@@ -32,13 +27,9 @@
             <button (click)="sortData('first_name')" class="sort-button">
               ⇅
             </button>
-          </div>
-        </th>
-
-        <!-- Last Name Column -->
-        <th>
-          <div class="header-container">
-            <i class="fas fa-user"></i> Last Name
+          </th>
+          <th>
+            Last Name
             <input
               type="text"
               placeholder="Filter Last Name"
@@ -50,13 +41,9 @@
             <button (click)="sortData('last_name')" class="sort-button">
               ⇅
             </button>
-          </div>
-        </th>
-
-        <!-- Email Column -->
-        <th>
-          <div class="header-container">
-            <i class="fas fa-envelope"></i> Email
+          </th>
+          <th>
+            Email
             <input
               type="text"
               placeholder="Filter Email"
@@ -64,52 +51,44 @@
               class="column-filter-input"
             />
             <button (click)="sortData('email')" class="sort-button">⇅</button>
-          </div>
-        </th>
-
-        <!-- Avatar Column -->
-        <th>
-          <div class="header-container" style="margin-bottom: 62px">
-            <i class="fas fa-image"></i> Avatar
-          </div>
-        </th>
-
-        <!-- Actions Column -->
-        <th>
-          <div class="header-container" style="margin-bottom: 62px">
-            Actions
-          </div>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of filteredUsers">
-        <td>{{ user.id }}</td>
-        <td>{{ user.first_name }}</td>
-        <td>{{ user.last_name }}</td>
-        <td>{{ user.email }}</td>
-        <td>
-          <img [src]="user.avatar" alt="Avatar" class="avatar" />
-        </td>
-        <td class="actions">
-          <button (click)="editUser(user)" class="action-button edit-button">
-            Edit
-          </button>
-          <button
-            (click)="openConfirmationDialog(user)"
-            class="action-button delete-button"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </th>
+          <th style="padding-bottom: 90px">Avatar</th>
+          <th style="padding-bottom: 90px">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of filteredUsers; track $index) {
+        <tr>
+          <td data-label="ID">{{ $index + 1 }}</td>
+          <td data-label="First Name">{{ user.first_name }}</td>
+          <td data-label="Last Name">{{ user.last_name }}</td>
+          <td data-label="Email">{{ user.email }}</td>
+          <td data-label="Avatar">
+            <img [src]="user.avatar" alt="Avatar" class="avatar" />
+          </td>
+          <td data-label="Actions" class="actions">
+            <button (click)="editUser(user)" class="action-button edit-button">
+              Edit
+            </button>
+            <button
+              (click)="openConfirmationDialog(user)"
+              class="action-button delete-button"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 
   <div class="pagination">
     <button (click)="previousPage()" [disabled]="currentPage === 1">
       Previous
     </button>
+    <p class="page-count">{{ currentPage }}</p>
     <button (click)="nextPage()">Next</button>
+    <button (click)="addUserToTable(users)">Add User</button>
   </div>
 </div>
