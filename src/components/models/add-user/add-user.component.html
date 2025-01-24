@@ -1,25 +1,69 @@
 <div style="padding: 37px" class="custom-dialog-background">
-  <h2 mat-dialog-title>Add User</h2>
-  <div mat-dialog-content>
-    <form>
-      <mat-form-field appearance="fill">
-        <mat-label>First Name</mat-label>
-        <input matInput [(ngModel)]="data.first_name" name="first_name" />
-      </mat-form-field>
+  <h2 class="dialog-title">Add User</h2>
+  <div class="dialog-content">
+    <form [formGroup]="addForm">
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input id="first_name" formControlName="first_name" list="firstNames" />
+        <datalist style="max-height: min-content" id="firstNames">
+          <option *ngFor="let name of firstNames" [value]="name"></option>
+        </datalist>
+        <div
+          *ngIf="
+            addForm.get('first_name')?.invalid &&
+            addForm.get('first_name')?.touched
+          "
+          class="error-message"
+        >
+          <span *ngIf="addForm.get('first_name')?.hasError('required')">
+            First Name is required.
+          </span>
+        </div>
+      </div>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Last Name</mat-label>
-        <input matInput [(ngModel)]="data.last_name" name="last_name" />
-      </mat-form-field>
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input id="last_name" formControlName="last_name" list="lastNames" />
+        <datalist id="lastNames">
+          <option *ngFor="let name of lastNames" [value]="name"></option>
+        </datalist>
+        <div
+          *ngIf="
+            addForm.get('last_name')?.invalid &&
+            addForm.get('last_name')?.touched
+          "
+          class="error-message"
+        >
+          <span *ngIf="addForm.get('last_name')?.hasError('required')">
+            Last Name is required.
+          </span>
+        </div>
+      </div>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="data.email" name="email" />
-      </mat-form-field>
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" />
+        <div
+          *ngIf="addForm.get('email')?.invalid && addForm.get('email')?.touched"
+          class="error-message"
+        >
+          <span *ngIf="addForm.get('email')?.hasError('required')">
+            Email is required.
+          </span>
+          <span *ngIf="addForm.get('email')?.hasError('email')">
+            Please enter a valid email address.
+          </span>
+        </div>
+      </div>
     </form>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="save()">Save</button>
+  <div class="dialog-actions">
+    <button class="cancel" (click)="cancel()">Cancel</button>
+    <button class="save" (click)="save()" [disabled]="addForm.invalid">
+      Save
+    </button>
   </div>
 </div>

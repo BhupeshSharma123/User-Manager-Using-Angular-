@@ -1,25 +1,67 @@
-<div style="padding: 37px" class="custom-dialog-background">
-  <h2 mat-dialog-title>Edit User</h2>
-  <div mat-dialog-content>
-    <form>
-      <mat-form-field appearance="fill">
-        <mat-label>First Name</mat-label>
-        <input matInput [(ngModel)]="data.first_name" name="first_name" />
-      </mat-form-field>
+<div class="dialog-container">
+  <div class="custom-dialog-background">
+    <h2 class="dialog-title">Edit User</h2>
+    <form [formGroup]="editForm">
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input id="first_name" formControlName="first_name" />
+        <div
+          *ngIf="
+            editForm.get('first_name')?.invalid &&
+            editForm.get('first_name')?.touched
+          "
+          class="error-message"
+        >
+          <span *ngIf="editForm.get('first_name')?.hasError('required')">
+            First Name is required.
+          </span>
+        </div>
+      </div>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Last Name</mat-label>
-        <input matInput [(ngModel)]="data.last_name" name="last_name" />
-      </mat-form-field>
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input id="last_name" formControlName="last_name" />
+        <div
+          *ngIf="
+            editForm.get('last_name')?.invalid &&
+            editForm.get('last_name')?.touched
+          "
+          class="error-message"
+        >
+          <span *ngIf="editForm.get('last_name')?.hasError('required')">
+            Last Name is required.
+          </span>
+        </div>
+      </div>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="data.email" name="email" />
-      </mat-form-field>
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" />
+        <div
+          *ngIf="
+            editForm.get('email')?.invalid && editForm.get('email')?.touched
+          "
+          class="error-message"
+        >
+          <span *ngIf="editForm.get('email')?.hasError('required')">
+            Email is required.
+          </span>
+          <span *ngIf="editForm.get('email')?.hasError('email')">
+            Please enter a valid email address.
+          </span>
+        </div>
+      </div>
     </form>
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="save()">Save</button>
+
+    <!-- Dialog Actions -->
+    <div class="dialog-actions">
+      <button class="cancel" (click)="cancel()">Cancel</button>
+      <button class="save" (click)="save()" [disabled]="editForm.invalid">
+        Save
+      </button>
+    </div>
   </div>
 </div>

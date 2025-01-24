@@ -1,95 +1,99 @@
-Container Styles mat-dialog-container {
-  background-color: #3b82f6;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 24px;
-  font-family: Arial, sans-serif;
-  border: 1px solid #d1d5db; /* Add subtle border */
-}
+/* Container Styles */
 .custom-dialog-background {
   padding: 37px;
   background: linear-gradient(to bottom, #626fb9, #fafbf8);
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Change this to your desired color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 /* Title Styling */
-h2[mat-dialog-title] {
+.dialog-title {
   margin: 0;
   font-size: 20px;
   font-weight: bold;
   color: #000000;
-  border-bottom: 2px solid #2a2c30; /* Slightly thicker border for title */
+  border-bottom: 2px solid #2a2c30;
   padding-bottom: 8px;
   margin-bottom: 16px;
 }
 
 /* Form Field Styling */
-mat-form-field {
+.form-group {
   width: 100%;
   margin-bottom: 16px;
 }
 
-mat-form-field .mat-form-field-wrapper {
-  background: #f9fafb;
-  border-radius: 6px;
-  padding: 4px 8px;
-}
-
-mat-form-field.mat-form-field-appearance-fill .mat-form-field-flex {
-  border: 1px solid #4d5053;
-  border-radius: 6px;
-}
-
-mat-form-field .mat-form-field-flex:hover {
-  border-color: #3b82f6;
-}
-
-mat-form-field .mat-form-field-label {
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
   color: #6b7280;
 }
 
-mat-form-field .mat-form-field-input {
+.form-group input {
+  width: 100%;
+  padding: 10px;
   font-size: 14px;
   color: #374151;
+  background: #f9fafb;
+  border: 1px solid #4d5053;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:hover {
+  border-color: #3b82f6;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Validation Error Styling */
+.error-message {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
 }
 
 /* Button Styling */
-mat-dialog-actions {
+.dialog-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
   margin-top: 16px;
 }
 
-button {
-  margin: 10px;
+.dialog-actions button {
   padding: 8px 16px;
-  border: 1px solid #d1d5db; /* Add border to buttons */
+  border: 1px solid #d1d5db;
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button[mat-button] {
+.dialog-actions button.cancel {
   color: #6b7280;
   background-color: transparent;
 }
 
-button[mat-raised-button] {
-  background-color: #2563eb;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-button[mat-raised-button]:hover {
-  background-color: #1e40af;
-}
-
-button[mat-button]:hover {
+.dialog-actions button.cancel:hover {
   background-color: rgba(55, 65, 81, 0.1);
 }
 
-button[mat-raised-button].mat-button-disabled {
+.dialog-actions button.save {
+  background-color: #2563eb;
+  color: white;
+}
+
+.dialog-actions button.save:hover {
+  background-color: #1e40af;
+}
+
+.dialog-actions button:disabled {
   background-color: #d1d5db;
   color: #9ca3af;
   cursor: not-allowed;
