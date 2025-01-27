@@ -1,0 +1,110 @@
+.card-container {
+  display: flex; /* Make the container a flexbox */
+  flex-wrap: wrap; /* Allow wrapping to the next row if there's not enough space */
+  gap: 20px; /* Add spacing between cards */
+  justify-content: center; /* Center the cards horizontally */
+}
+
+.card {
+  width: 300px; /* Fixed width for each card */
+  padding: 20px;
+  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
+  flex: 0 0 auto; /* Prevent cards from growing or shrinking */
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  width: 40px;
+}
+
+.icon {
+  font-size: 1.5em;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  margin: 15px 0;
+}
+
+.product-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+.description {
+  font-size: 0.9em;
+  color: #666;
+  margin: 10px 0;
+}
+
+.rating {
+  font-size: 1em;
+  color: gold;
+  margin: 5px 0;
+}
+
+.colors {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.price {
+  margin: 10px 0;
+}
+
+.amount {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+.text {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.add-to-cart {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #ff4081, #7c4dff);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.add-to-cart:hover {
+  opacity: 0.9;
+}

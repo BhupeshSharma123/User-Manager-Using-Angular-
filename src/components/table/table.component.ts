@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AddUserComponent } from '../models/add-user/add-user.component';
 import { NlQueryService } from '../../services/query/nl-query.service';
+import { RouteService } from '../../services/routing/route.service';
 
 @Component({
   selector: 'app-table',
@@ -35,39 +36,13 @@ export class TableComponent implements OnInit {
     private snackBar: MatSnackBar,
     public apiService: ApiServicesService,
     private dialog: MatDialog,
-    private nlQueryService: NlQueryService
+    private routeService: RouteService
   ) {}
 
   ngOnInit() {
     this.fetchData();
   }
-  userQuery: string = '';
 
-  handleNLQuery() {
-    if (!this.userQuery) return;
-
-    this.nlQueryService.getQueryResult(this.userQuery).subscribe((data) => {
-      if (data.error) {
-        console.error('Error:', data.error);
-      } else {
-        const operation = JSON.parse(data.result);
-        this.applyOperation(operation);
-      }
-    });
-  }
-
-  applyOperation(operation: any) {
-    switch (operation.type) {
-      case 'filter':
-        this.applyColumnFilter(operation.column, operation.value);
-        break;
-      case 'sort':
-        this.sortData(operation.column);
-        break;
-      default:
-        console.error('Unknown operation:', operation);
-    }
-  }
   fetchData() {
     this.apiService.getData(this.currentPage).subscribe((response: any) => {
       this.users = response.data;
@@ -200,5 +175,8 @@ export class TableComponent implements OnInit {
       horizontalPosition: 'right',
       verticalPosition: 'top',
     });
+  }
+  toCard() {
+    this.routeService.navigateTo('card');
   }
 }

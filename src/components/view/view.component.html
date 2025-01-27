@@ -1,0 +1,20 @@
+<div *ngIf="data && data.length > 0; else noUsers" class="user-list">
+  <div *ngFor="let user of data; trackBy: trackById" class="user-card">
+    <img [src]="user.avatar" alt="{{ user.first_name }}" class="user-avatar" />
+    <div class="user-info">
+      <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+  </div>
+</div>
+<div class="back-button-container">
+  <button (click)="goBack()" class="back-button">Go Back</button>
+  <button (click)="totable()" class="back-button">Table</button>
+</div>
+
+<!-- Fallback for when no users are found -->
+<ng-template #noUsers>
+  <div class="no-users">
+    <p>No users found.</p>
+  </div>
+</ng-template>

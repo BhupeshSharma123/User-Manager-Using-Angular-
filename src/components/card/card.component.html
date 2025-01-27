@@ -1,0 +1,15 @@
+<div class="card-container">
+  @for (user of users; track $index) {
+  <div class="card">
+    <img [src]="user.avatar" class="product-image" />
+    <h2 class="product-title">{{ user.first_name }} {{ user.last_name }}</h2>
+    <div class="price">
+      <span class="amount">{{ user.email }}</span>
+    </div>
+    <button (click)="viewUser(user.id)" class="add-to-cart">View User</button>
+  </div>
+  }
+</div>
+
+<!-- Place the router-outlet outside the loop -->
+<router-outlet></router-outlet>

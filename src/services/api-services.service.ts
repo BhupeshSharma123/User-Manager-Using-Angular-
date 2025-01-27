@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,8 @@ export class ApiServicesService {
   addUser(newUser: any) {
     const url = `https://reqres.in/api/users`;
     return this.http.post(url, newUser);
+  }
+  getSingleUser(id: string) {
+    return this.http.get(`https://reqres.in/api/users/${id}`); // Example API endpoint
   }
 }
